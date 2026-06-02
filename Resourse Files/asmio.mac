@@ -1,0 +1,29 @@
+input macro
+    mov ah,01h
+    int 21h
+endm
+
+
+
+output macro addr
+    mov dx,offset addr
+    mov ah,09h
+    int 21h
+endm
+
+
+
+mult macro mult1,mult2,mult3
+local lop,exit1 
+
+mov dx, mult1    
+mov cx, mult2    
+xor ax, ax       
+jcxz exit1       
+lop:
+    add ax, dx   
+    loop lop     
+exit1:
+mov mult3, ax    
+
+endm
